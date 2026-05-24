@@ -15,6 +15,5 @@ export const store = {
     easyIntv: [1, 3],
     mediumIntv: [1, 3, 4],
     hardIntv: [0, 1, 2, 3, 4],
-    problemSortBy: problemSorters.sortByReviewTimeAsc,
-    isCloudSyncEnabled: false
+    problemSortBy: problemSorters.sortByReviewTimeAsc
 }

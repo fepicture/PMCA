@@ -4,11 +4,6 @@
     <title>PMCA</title>
     <meta charset="utf-8">
     <link href="lib/bootstrap.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=JetBrains+Mono:wght@200&family=Noto+Sans+SC&family=PT+Mono&family=Press+Start+2P&family=Raleway&display=swap"
-        rel="stylesheet">
 </head>
 
 <body style="width: 500px; height: 900px; background-color:bisque;">
@@ -40,12 +35,6 @@
                 &nbsp;
                 <label class="form-check-label" for="flexSwitchCheckDefault" id="siteLabel"></label>
             </div>
-        </div>
-
-        <div class="multifont my-3 py-0 by-0" style="text-align: center; font-size: smaller">
-            <i class="fa-solid fa-circle-info"></i>
-            <small>🎉New feature🎉</small>
-            <small> Now you can sync your problem data across devices. Open options to enable it.</small>
         </div>
 
         <!-- navbar -->
@@ -80,7 +69,7 @@
                     <button type="button" class="btn btn-outline-warning custom-btn config-btn" id="optionsBtn"
                         data-bs-toggle="tooltip" data-bs-title="Open Options" data-bs-placement="right"
                         style="display: flex; justify-content: center; align-items: center;">
-                        <small class="fa-solid fa-gear fa-2xs my-2"></small>
+                        <span class="icon icon-xs my-2" data-icon="gear"></span>
                     </button>
                     <div style="display: flex; justify-content: center; align-items: center; flex-grow: 1;">
                         <button type="button" class="btn btn-outline-warning custom-btn" id="prevButton0">&lt;</button>
@@ -92,7 +81,7 @@
                     <button type="button" class="btn btn-outline-warning custom-btn undo-ops-btn" id="undoOps0"
                         data-bs-toggle="tooltip" data-bs-title="undo latest operation" data-bs-placement="left"
                         style="display: flex; justify-content: center; align-items: center;">
-                        <small class="fa-solid fa-arrow-rotate-left fa-2xs my-2"></small>
+                        <span class="icon icon-xs my-2" data-icon="arrow-rotate-left"></span>
                     </button>
                 </nav>
             </div>
@@ -105,7 +94,7 @@
                     <button type="button" class="btn btn-outline-warning custom-btn config-btn" id="optionsBtn"
                         data-bs-toggle="tooltip" data-bs-title="Open Options" data-bs-placement="right"
                         style="display: flex; justify-content: center; align-items: center;">
-                        <small class="fa-solid fa-gear fa-2xs my-2"></small>
+                        <span class="icon icon-xs my-2" data-icon="gear"></span>
                     </button>
                     <div style="display: flex; justify-content: center; align-items: center; flex-grow: 1;">
                         <button type="button" class="btn btn-outline-warning custom-btn" id="prevButton1">&lt;</button>
@@ -117,7 +106,7 @@
                     <button type="button" class="btn btn-outline-warning custom-btn undo-ops-btn" id="undoOps1"
                         data-bs-toggle="tooltip" data-bs-title="undo latest operation" data-bs-placement="left"
                         style="display: flex; justify-content: center; align-items: center;">
-                        <small class="fa-solid fa-arrow-rotate-left fa-2xs my-2"></small>
+                        <span class="icon icon-xs my-2" data-icon="arrow-rotate-left"></span>
                     </button>
                 </nav>
             </div>
@@ -130,7 +119,7 @@
                     <button type="button" class="btn btn-outline-warning custom-btn config-btn" id="optionsBtn"
                         data-bs-toggle="tooltip" data-bs-title="Open Options" data-bs-placement="right"
                         style="display: flex; justify-content: center; align-items: center;">
-                        <small class="fa-solid fa-gear fa-2xs my-2"></small>
+                        <span class="icon icon-xs my-2" data-icon="gear"></span>
                     </button>
                     <div style="display: flex; justify-content: center; align-items: center; flex-grow: 1;">
                         <button type="button" class="btn btn-outline-warning custom-btn" id="prevButton2">&lt;</button>
@@ -142,7 +131,7 @@
                     <button type="button" class="btn btn-outline-warning custom-btn undo-ops-btn" id="undoOps2"
                         data-bs-toggle="tooltip" data-bs-title="undo latest operation" data-bs-placement="left"
                         style="display: flex; justify-content: center; align-items: center;">
-                        <small class="fa-solid fa-arrow-rotate-left fa-2xs my-2"></small>
+                        <span class="icon icon-xs my-2" data-icon="arrow-rotate-left"></span>
                     </button>
                 </nav>
             </div>
@@ -152,9 +141,7 @@
         <!-- star & donate -->
         <div class="text-center mb-3 mt-3"
             style="display: flex; align-items: center; justify-content: center; text-align: center; position:fixed; bottom: 0;">
-            <iframe src="https://ghbtns.com/github-btn.html?user=HaolinZhong&repo=PMCA&type=star&count=true&size=large"
-                frameborder="0" scrolling="0" width="200" height="30" title="GitHub" loading="lazy" class="col-3 mb-0"></iframe>
-            <a class="col-9 mb-0 ms-0" href="https://github.com/HaolinZhong/PMCA/issues/new" target="_blank">
+            <a class="mb-0" href="https://github.com/HaolinZhong/PMCA/issues/new" target="_blank">
                 <button type="button" class="btn btn-outline-warning custom-btn"
                     style="font-size: smaller; font-family: 'Courier Prime', monospace;">Request new features / Report a
                     bug</button>
@@ -162,7 +149,6 @@
         </div>
     </div>
     <script type="text/javascript" src="lib/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="lib/fontawesome.js"></script>
     <script src="dist/popup.js"></script>
 </body>
 

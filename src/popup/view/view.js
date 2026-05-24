@@ -1,12 +1,13 @@
 import { store } from "../store";
 import { isInCnMode } from "../service/modeService";
-import { getAllProblems, syncProblems } from "../service/problemService";
+import { getAllProblems } from "../service/problemService";
 import { CN_LABLE, GL_LABLE, PAGE_SIZE, months } from "../util/constants";
 import { completedTableDOM, input0DOM, input1DOM, input2DOM, inputLabel0DOM, inputLabel1DOM, inputLabel2DOM, needReviewTableDOM, nextButton0DOM, nextButton1DOM, nextButton2DOM, noReviewTableDOM, prevButton0DOM, prevButton1DOM, prevButton2DOM, siteLabelDOM, switchButtonDOM, undoButtonDOMs } from "../util/doms";
 import { calculatePageNum, decorateProblemLevel, getDelayedHours, getNextReviewTime, isCompleted, needReview, scheduledReview } from "../util/utils";
 import { registerAllHandlers } from "../handler/handlerRegister";
 import { hasOperationHistory } from "../service/operationHistoryService";
 import { loadConfigs } from "../service/configService";
+import { ICONS } from "../util/icons";
 
 /*
     Tag for problem records
@@ -25,17 +26,17 @@ const getProblemProgressBarCell = (problem, width) => {
 
 const getProblemLevelCell = (problem, width) => `<td style="width: ${width | 12}%;"><small>${decorateProblemLevel(problem.level)}</small></td>`;
 
-const getCheckButtonTag = (problem) => `<small class="fa-regular fa-square-check fa-2xs mt-2 mb-0 check-btn-mark"\ 
+const getCheckButtonTag = (problem) => `<span class="icon icon-xs mt-2 mb-0 check-btn-mark"\
                                             data-bs-toggle="tooltip" data-bs-title="✅ Mark as mastered" data-bs-placement="left"\
-                                            style="color: #d2691e;" data-id=${problem.index}> </small>`;
+                                            style="color: #d2691e;" data-id=${problem.index}>${ICONS['square-check']}</span>`;
 
-const getDeleteButtonTag = (problem) => `<small class="fa-regular fa-square-minus fa-2xs mt-2 mb-0 delete-btn-mark"\ 
+const getDeleteButtonTag = (problem) => `<span class="icon icon-xs mt-2 mb-0 delete-btn-mark"\
                                             data-bs-toggle="tooltip" data-bs-title="⛔ Delete this record" data-bs-placement="left"\
-                                            style="color: red;" data-id=${problem.index}> </small>`;
+                                            style="color: red;" data-id=${problem.index}>${ICONS['square-minus']}</span>`;
 
-const getResetButtonTag = (problem) => `<small class="fa-solid fa-arrows-rotate fa-2xs mt-2 mb-0 reset-btn-mark" \
+const getResetButtonTag = (problem) => `<span class="icon icon-xs mt-2 mb-0 reset-btn-mark"\
                                             data-bs-toggle="tooltip" data-bs-title="🔄 Reset progress" data-bs-placement="left"\
-                                            style="color: #d2691e;" data-id=${problem.index}> </small>`;
+                                            style="color: #d2691e;" data-id=${problem.index}>${ICONS['arrows-rotate']}</span>`;
 
 const createReviewProblemRecord = (problem) => {
     const htmlTag =
@@ -95,7 +96,6 @@ const createCompletedProblemRecord = (problem) => {
 
 export const renderReviewTableContent = (problems, page) => {
     /* validation */
-    console.log(store.toReviewMaxPage);
     if (page > store.toReviewMaxPage || page < 1) {
         input0DOM.classList.add("is-invalid");
         return;
@@ -249,11 +249,13 @@ export const renderUndoButton = async () => {
 } 
 
 export const renderAll = async () => {
-    await loadConfigs();
-    await renderSiteMode();
-    await syncProblems();
+    const [, , allProblems] = await Promise.all([
+        loadConfigs(),
+        renderSiteMode(),
+        getAllProblems(),
+    ]);
 
-    const problems = Object.values(await getAllProblems()).filter(p => p.isDeleted !== true);
+    const problems = Object.values(allProblems).filter(p => p.isDeleted !== true);
     store.needReviewProblems = problems.filter(needReview);
     store.reviewScheduledProblems = problems.filter(scheduledReview);
     store.completedProblems = problems.filter(isCompleted);

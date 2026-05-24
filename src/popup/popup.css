@@ -1,3 +1,39 @@
+@font-face {
+    font-family: 'Press Start 2P';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../lib/fonts/PressStart2P-Regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Courier Prime';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../lib/fonts/CourierPrime-Regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'PT Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../lib/fonts/PTMono-Regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: url('../../lib/fonts/JetBrainsMono-ExtraLight.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../lib/fonts/Raleway-Regular.woff2') format('woff2');
+}
+
 table,
 tbody,
 tr,
@@ -38,7 +74,7 @@ iframe {
 }
 
 .multifont {
-    font-family: 'Courier Prime', 'Noto Sans SC', sans-serif;
+    font-family: 'Courier Prime', sans-serif;
 }
 
 a {
@@ -48,4 +84,18 @@ a {
 .custom-tooltip {
     --bs-tooltip-bg: var(--bd-violet-bg);
     --bs-tooltip-color: var(--bs-white);
+}
+
+.icon {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
+.icon svg {
+    display: block;
+    pointer-events: none;
+}
+.icon-xs svg {
+    width: 0.625em;
+    height: 0.625em;
 }
