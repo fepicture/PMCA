@@ -1,6 +1,9 @@
-import { getDifficultyBasedSteps, getSubmissionResult, isSubmissionSuccess, isSubmitButton, needReview, updateProblemUponSuccessSubmission } from "../util/utils";
+import { getDifficultyBasedSteps, getSubmissionResult, isSubmissionSuccess, needReview, updateProblemUponSuccessSubmission } from "../util/utils";
 import { getAllProblems, createOrUpdateProblem, getCurrentProblemInfoFromLeetCode } from "../service/problemService";
 import { Problem } from "../entity/problem";
+import { SUBMIT_BUTTON_ATTRIBUTE_NAME, SUBMIT_BUTTON_ATTRIBUTE_VALUE } from "../util/constants";
+
+const SUBMIT_BUTTON_SELECTOR = `[${SUBMIT_BUTTON_ATTRIBUTE_NAME}="${SUBMIT_BUTTON_ATTRIBUTE_VALUE}"]`;
 
 let activeMonitorId = null;
 
@@ -63,18 +66,13 @@ export const monitorSubmissionResult = () => {
 };
 
 export const submissionListener = (event) => {
-
+    // Climb to the submit button from wherever the click actually landed.
+    // LeetCode nests the label/icon several levels deep, so the old fixed
+    // 3-level parent walk missed clicks on deeper children; closest() handles
+    // any nesting depth.
     const element = event.target;
 
-    const filterConditions = [
-        isSubmitButton(element),
-        element.parentElement && isSubmitButton(element.parentElement),
-        element.parentElement && element.parentElement.parentElement && isSubmitButton(element.parentElement.parentElement),
-    ];
-
-    const isSubmission = filterConditions.reduce((prev, curr) => prev || curr);
-
-    if (isSubmission) {
+    if (element && typeof element.closest === "function" && element.closest(SUBMIT_BUTTON_SELECTOR)) {
         monitorSubmissionResult();
     }
 };

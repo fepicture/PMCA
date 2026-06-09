@@ -73,6 +73,25 @@
             <div id="feedbackMessage" class="alert alert-success mt-3" style="display: none; text-align: center;" role="alert">
                 Options are successfully saved!
             </div>
+
+            <!-- Data management -->
+            <hr class="mt-5 mb-4" />
+            <h5 class="mb-3" style="font-family: 'Press Start 2P', cursive; font-size: 0.8rem;">Data</h5>
+
+            <div class="d-flex flex-column gap-2 align-items-stretch">
+                <button type="button" id="exportCsvBtn" class="btn btn-outline-warning custom-btn"
+                    style="font-family: 'Courier Prime', monospace;">Export records to CSV</button>
+
+                <input type="file" id="importCsvInput" accept=".csv,text/csv" style="display: none;" />
+                <button type="button" id="importCsvBtn" class="btn btn-outline-warning custom-btn"
+                    style="font-family: 'Courier Prime', monospace;">Import records from CSV</button>
+
+                <button type="button" id="clearAllBtn" class="btn btn-outline-danger"
+                    data-bs-toggle="modal" data-bs-target="#clearConfirmModal"
+                    style="font-family: 'Courier Prime', monospace;">Clear all records</button>
+            </div>
+
+            <div id="dataFeedback" class="alert mt-3" style="display: none; text-align: center;" role="alert"></div>
         </div>
 
         <!-- footer -->
@@ -83,6 +102,30 @@
                     style="font-size: smaller; font-family: 'Courier Prime', monospace;">Request new features / Report a
                     bug</button>
             </a>
+        </div>
+
+        <!-- Clear-all confirmation -->
+        <div class="modal fade" id="clearConfirmModal" tabindex="-1" aria-labelledby="clearConfirmLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="background-color: bisque;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="clearConfirmLabel"
+                            style="font-family: 'Courier Prime', monospace;">Clear all records?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body multifont" style="text-align: left;">
+                        This permanently deletes <b>all</b> tracked problems on <b>both</b> LeetCode Global and CN, and
+                        clears the undo history. This cannot be undone &mdash; consider exporting a CSV backup first.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                            style="font-family: 'Courier Prime', monospace;">Cancel</button>
+                        <button type="button" id="confirmClearBtn" class="btn btn-danger" data-bs-dismiss="modal"
+                            style="font-family: 'Courier Prime', monospace;">Yes, clear everything</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="dist/options.js"></script>

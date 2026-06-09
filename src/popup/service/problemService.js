@@ -3,7 +3,7 @@ import { getLocalStorageData, setLocalStorageData } from "../delegate/localStora
 import { addNewOperationHistory } from "./operationHistoryService";
 import { OPS_TYPE } from "../entity/operationHistory";
 import { forggettingCurve } from "../util/constants";
-import { CN_PROBLEM_KEY, PROBLEM_KEY } from "../util/keys";
+import { CN_PROBLEM_KEY, OPS_HISTORY_KEY, PROBLEM_KEY } from "../util/keys";
 import { isInCnMode } from "./modeService";
 
 export const getAllProblems = async () => {
@@ -69,6 +69,17 @@ export const deleteProblem = async (problemId) => {
         problems[problemId] = problem;
         await setProblems(problems);
     }
+};
+
+/*
+    Wipe all tracked problems on both sites and drop the undo history.
+    The undo history is cleared too because its snapshots point at problems that
+    no longer exist - undoing after a wipe would resurrect ghost records.
+*/
+export const clearAllProblems = async () => {
+    await setLocalStorageData(PROBLEM_KEY, {});
+    await setLocalStorageData(CN_PROBLEM_KEY, {});
+    await setLocalStorageData(OPS_HISTORY_KEY, []);
 };
 
 export const resetProblem = async (problemId) => {
